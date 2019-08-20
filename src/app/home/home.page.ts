@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ServicioService } from '../servicios/servicio.service';
+
 
 @Component({
   selector: 'app-home',
@@ -8,27 +9,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HomePage {
 
-  constructor(public httpClient: HttpClient) {}
+  constructor(public servicio: ServicioService) {}
 
-  sendPostRequest(){
-    let postData = {
-      "username":"HebraicaApp",//user para usar la api
-      "password":"***********"//password para usar la api
-    }
-    this.httpClient.post('http://app.hebraica.org.ar:8025/hebraica/test/token.json',postData,{})
-    .subscribe(data=>{
-      console.log(data['_body']);
-    }, error => {
-      console.log(error);
-    });
+  sendPostRequest() {
+    this.servicio.login();
   }
 
-  sendGetRequest(){
-    this.httpClient.get('https://jsonplaceholder.typicode.com/todos/1').
-    subscribe(data=>{
-      console.log(data);
-    }, error =>{
-      console.log(error);
-    });
+  getSaldoFliar() {
+    this.servicio.saldoFliar('131685');
+  }
+
+  getDetalleCC() {
+    this.servicio.detalleCC('131685');
   }
 }
