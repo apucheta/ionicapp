@@ -13,7 +13,7 @@ export class ServicioService {
   public login() {
     const postData = {
       username: 'HebraicaApp', // user para usar la api
-      password: 'hebraicaionic' // password para usar la api
+      password: '***********' // password para usar la api
     };
 
     this.httpClient.post('http://app.hebraica.org.ar:8025/hebraica/test/token.json', postData, {})
